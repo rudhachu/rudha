@@ -1,18 +1,31 @@
 {
   "name": "rudhra-bot",
   "version": "1.0.0",
-  "description": "Multifunctional WhatsApp bot.",
+  "description": "Rudhra WhatsApp Bot.",
   "main": "index.js",
-  "directories": {
-    "lib": "lib"
+  "type": "commonjs",
+  "scripts": {
+    "start": "pm2 start index.js --name rudhra --attach",
+    "stop": "pm2 stop rudhra",
+    "restart": "pm2 restart rudhra",
+    "postinstall": "node -e \"try { require('sharp'); } catch (e) { process.exit(1); }\" || yarn add sharp@0.33.5 --ignore-engines"
   },
+  "engines": {
+    "node": ">=18.0.0 <=22.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rudhachu/rudha.git"
+  },
+  "author": "princerudh",
+  "license": "GPL-3.0-or-later",
   "dependencies": {
     "@adiwajshing/keyed-db": "^0.2.4",
     "@google/generative-ai": "^0.5.0",
     "@hapi/boom": "^10.0.1",
     "@neeraj-x0/nodetoolkit": "^1.0.3",
     "@vitalets/google-translate-api": "^9.2.0",
-    "@whiskeysockets/baileys": "^6.7.13",
+    "@whiskeysockets/baileys": "github:princerudh/Baileys.js",
     "acrcloud": "^1.4.0",
     "aptoide-scraper": "^1.0.1",
     "axios": "^1.7.2",
@@ -39,8 +52,8 @@
     "node-webpmux": "^3.1.7",
     "open-sans-fontface": "^1.4.0",
     "openai": "^4.17.4",
+    "pastebin-api": "^7.0.0",
     "pastebin-js": "^1.0.6",
-    "pastebin-api":"^7.0.0",
     "pg": "^8.11.5",
     "pino": "^8.14.1",
     "pm2": "^5.3.0",
@@ -57,23 +70,5 @@
     "spotifydl-core": "^0.2.0",
     "sqlite3": "^5.1.7",
     "ytsr": "^3.8.4"
-  },
-  "scripts": {
-    "start": "node --max-old-space-size=4096 index.js",
-    "log": "pm2 start index.js --name rudhra && pm2 logs rudhra"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/rudhachu/rudha.git"
-  },
-  "keywords": [
-    "bot",
-    "whatsapp"
-  ],
-  "author": "princerudh",
-  "license": "GPL-3.0-or-later",
-  "bugs": {
-    "url": "https://github.com/rudhachu/rudha/issues"
-  },
-  "homepage": "https://github.com/rudhachu/rudha#readme"
+  }
 }
