@@ -1,14 +1,5 @@
 FROM quay.io/princerudh/rudhra:latest
-RUN apt-get update && \
-  apt-get install -y \
-  ffmpeg \
-  imagemagick \
-  webp && \
-  apt-get upgrade -y && \
-  rm -rf /var/lib/apt/lists/*
-
-COPY package.json .
-RUN npm install
-COPY . .
-EXPOSE 3000
-CMD ["node", "index.js"]
+RUN git clone https://github.com/rudhachu/rudha /root/rudhra/
+WORKDIR /root/rudhra/
+RUN yarn install --network-concurrency 1
+CMD ["npm", "start"]
