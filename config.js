@@ -18,7 +18,7 @@ module.exports = {
   LOGS: toBool(process.env.LOGS) || true,
   ANTI_LINK_ACTION: process.env.ANTI_LINK_ACTION || "delete", //delete or kick
   MENTION: process.env.MENTION || "enable",
-  SESSION_ID: process.env.SESSION_ID || "taira_tech-X40HgARY#J9iLi68W66RyC5wrkh9fEABegbS1migGoy4UD92Vft4",//Session ID here
+  SESSION_ID: process.env.SESSION_ID || "null",//Session ID here
   LANG: process.env.LANG || "EN",//Only English currently supported
   HANDLERS: process.env.HANDLER === "false" || process.env.HANDLER === "null" ? "^" : "^[/]",
   RMBG_KEY: process.env.RMBG_KEY || false,
@@ -38,7 +38,7 @@ module.exports = {
   HEROKU: toBool(process.env.HEROKU) || true,
   BOT_NAME: process.env.BOT_NAME || "ʀᴜᴅʜʀᴀ-ʙᴏᴛ",
   PROCESSNAME: process.env.PROCESSNAME || "ʀᴜᴅʜʀᴀ-ʙᴏᴛ",
-  WORK_TYPE: process.env.WORK_TYPE || "private",
+  WORK_TYPE: process.env.MODE || "private",
   ANTIDELETE: toBool(process.env.DELETED_LOG) || false,
   REMOVEBG : process.env.REMOVEBG || false,
   DATABASE_URL: DATABASE_URL,
