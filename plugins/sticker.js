@@ -1,4 +1,5 @@
 const config = require("../config");
+const fs = require("fs");
 const { command, isPrivate, toAudio, addExif, AddMp3Meta, getBuffer } = require("../lib/");
 const { webp2mp4, textToImg } = require("../lib/functions");
 
