@@ -1,6 +1,6 @@
 const plugins = require("../lib/plugins");
-const { command, isPrivate, clockString, pm2Uptime } = require("../lib");
 const process = require("process")
+const { command, isPrivate, formatp, getBuffer, clockString, pm2Uptime } = require("../lib");
 const { OWNER_NAME, BOT_NAME } = require("../config");
 const { hostname } = require("os");
 const acrcloud = require("acrcloud");
@@ -47,65 +47,90 @@ command({
 
 
 command({
-    pattern: "list",
-    fromMe: isPrivate,
-    desc: "Show All Commands",
-    dontAddCommandList: true,
-    type: "user",
-  },
-  async (message, match) => {
-   
-    if (match) {
-      for (let i of plugins.commands) {
-        if (
-          i.pattern instanceof RegExp &&
-          i.pattern.test(message.prefix + match)
-        ) {
-          const cmdName = i.pattern.toString().split(/\W+/)[1];
-          message.reply(`\`\`\`Command: ${message.prefix}${cmdName.trim()}
+  pattern: "menu", 
+  fromMe: isPrivate, 
+  desc: "rudhra-bot user manual.", 
+  dontAddCommandList: true, 
+  type: "user", 
+}, async (message, match) => {
+  if (match) {
+    for (let i of plugins.commands) {
+      if (i.pattern instanceof RegExp && i.pattern.test(message.prefix + match)) {
+        const cmdName = i.pattern.toString().split(/\W+/)[1];
+        message.reply(`\`\`\`Command: ${message.prefix}${cmdName.trim()}   
 Description: ${i.desc}\`\`\``);
-        }
       }
-    } else {
-      let { prefix } = message;
-      let [date, time] = new Date()
-        .toLocaleString("en-IN", { timeZone: "Africa/Lagos" })
-        .split(",");
-      let menu = `
-     *MENU 🌫️* ${readmore}
-      `;
-      let cmnd = [];
-      let cmd;
-      let category = [];
-      plugins.commands.map((command, num) => {
-        if (command.pattern instanceof RegExp) {
-          cmd = command.pattern.toString().split(/\W+/)[1];
-        }
+    }
+  } else {
+    // Getting current date and time in the Africa/Lagos time zone
+    let { prefix } = message;
+    let [date, time] = new Date()
+      .toLocaleString("en-IN", { timeZone: "Africa/Lagos" })
+      .split(",");
 
-        if (!command.dontAddCommandList && cmd !== undefined) {
-          let type = command.type ? command.type.toLowerCase() : "misc";
+    let menu = `╭════════════════ ⪩
+┃  〘 *ʀᴜᴅʜʀᴀ ʙᴏᴛ* 〙
+╰════════════════ ⪨
+╭════════════════ ⪩
+┃   *Time  : ${time}*
+┃   *Dᴀᴛᴇ : ${date}*
+┃   *Pʟᴜɢɪɴꜱ : ${plugins.commands.length}*
+┃   *Mᴏᴅᴇ : ${config.MODE}*
+┃   *Pʀᴇꜰɪx : ${prefix}*
+┃   *Rᴜɴᴛɪᴍᴇ : ${runtime(process.uptime())}*
+╰════════════════ ⪨ \n\n${readmore}`;
 
-          cmnd.push({ cmd, type });
+    let cmnd = [];
+    let cmd;
+    let category = [];
 
-          if (!category.includes(type)) category.push(type);
-        }
-      });
-      cmnd.sort();
-      category.sort().forEach((cmmd) => {
-        menu += `\n
-╭═══════════════ ⪩
+    plugins.commands.map((command, num) => {
+      if (command.pattern instanceof RegExp) {
+        cmd = command.pattern.toString().split(/\W+/)[1];
+      }
+
+      if (!command.dontAddCommandList && cmd !== undefined) {
+        let type = command.type ? command.type.toLowerCase() : "misc";
+        cmnd.push({ cmd, type });
+
+        if (!category.includes(type)) category.push(type);
+      }
+    });
+
+    // Sorting commands and categories
+    cmnd.sort();
+    category.sort().forEach((cmmd) => {
+      menu += `╭═══════════════ ⪩
 ╰╮╰┈➤ *${cmmd.toUpperCase()}*
 ╭═══════════════ ⪩\n`;
-        let comad = cmnd.filter(({ type }) => type == cmmd);
-        comad.forEach(({ cmd }) => {
-          menu += `┃  ${cmd.trim()} \n`;
-        });
-        menu += `╰════════════════ ⪨`;
+
+      let comad = cmnd.filter(({ type }) => type == cmmd);
+      comad.forEach(({ cmd }) => {
+        menu += `┃  ${cmd.trim()} \n`;
       });
-      return await message.sendMessage(message.jid,menu);
-    }
+      menu += `╰════════════════ ⪨`;
+    });
+
+    let buff = config.LINK_PREVIEW.split(";")[2];
+    await message.client.sendMessage(message.jid, {
+      'image': buff,
+      'mimetype': "image/jpeg",
+      'caption': menu,
+      'contextInfo': {
+        'externalAdReply': {
+          'title': config.LINK_PREVIEW.split(";")[0],
+          'body': config.LINK_PREVIEW.split(";")[1],
+          'sourceUrl': "",
+          'mediaUrl': "",
+          'mediaType': 1,
+          'showAdAttribution': true,
+          'renderLargerThumbnail': false,
+          'thumbnailUrl': config.LINK_PREVIEW.split(";")[2]
+        }
+      }
+    });
   }
-);
+});
 
 command({
       pattern: "find ?(.*)",
