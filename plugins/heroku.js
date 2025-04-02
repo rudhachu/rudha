@@ -95,10 +95,10 @@ command({
   if(!match) { return message.reply("use like .mode private/public")};
   if(match === "private") 
   process.env.MODE="private"
-  await message.reply("*RUDHRA WORKTYPE is now private*")
+  await message.reply("*RUDHRA MODE is now private*")
   if (match === "public"){
   process.env.MODE="public"
-  await message.reply("*RUDHRA WORKTYPE is now public*")
+  await message.reply("*RUDHRA MODE is now public*")
   }
   else {
   await message.reply("*You need to choose between private or public*")}
