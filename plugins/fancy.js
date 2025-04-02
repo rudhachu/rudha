@@ -1,21 +1,7 @@
-/*
-██╗  ██╗ ██████╗ ████████╗ █████╗ ██████╗  ██████╗       ███╗   ███╗██████╗ 
-██║  ██║██╔═══██╗╚══██╔══╝██╔══██╗██╔══██╗██╔═══██╗      ████╗ ████║██╔══██╗
-███████║██║   ██║   ██║   ███████║██████╔╝██║   ██║█████╗██╔████╔██║██║  ██║
-██╔══██║██║   ██║   ██║   ██╔══██║██╔══██╗██║   ██║╚════╝██║╚██╔╝██║██║  ██║
-██║  ██║╚██████╔╝   ██║   ██║  ██║██║  ██║╚██████╔╝      ██║ ╚═╝ ██║██████╔╝
-╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝       ╚═╝     ╚═╝╚═════╝
- By : Taira Makino
- Github : https://github.com/anonphoenix007
- WhatsApp : https://wa.me/2347080968564
-*/                                                                                                                                                    
-
-
 const { command, isPrivate } = require("../lib/");
 const { listall } = require("../lib/fancy");
 
-command(
-  {
+command({
     pattern: "fancy",
     fromMe: isPrivate,
     desc: "converts text to fancy text",
@@ -51,7 +37,7 @@ command(
 );
 
 function listAllFancyTexts(text) {
-  let message = "Fancy text generator\n\nReply to a message\nExample: .fancy 32 HOTARO-MD\n\n";
+  let message = "Fancy text generator\n\nReply to a message\nExample: .fancy 32 RUDHRA\n\n";
   listall(text).forEach((txt, index) => {
     message += `${index + 1} ${txt}\n`;
   });
