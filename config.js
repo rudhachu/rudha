@@ -40,6 +40,7 @@ module.exports = {
   BOT_NAME: process.env.BOT_NAME || "ʀᴜᴅʜʀᴀ-ʙᴏᴛ",
   STICKER_DATA: process.env.STICKER_DATA || "Ʀ ᴜ ᴅ ʜ ʀ λ;Ƥ ʀ ɪ ɴ ᴄ ᴇ  Ʀ ᴜ ᴅ ʜ",
   AUDIO_DATA: process.env.AUDIO_DATA || "Ʀ ᴜ ᴅ ʜ ʀ λ;Ƥ ʀ ɪ ɴ ᴄ ᴇ  Ʀ ᴜ ᴅ ʜ;https://raw.githubusercontent.com/rudhra-prh/media/main/image/rudhra2.jpg",
+  LINK_PREVIEW: process.env.LINK_PREVIEW || "𝗥𝗨𝗗𝗛𝗥𝗔 𝗕𝗢𝗧;Ƥ ʀ ɪ ɴ ᴄ ᴇ  Ʀ ᴜ ᴅ ʜ;https://raw.githubusercontent.com/rudhraan/media/main/image/rudhra2.jpg",
   PROCESSNAME: process.env.PROCESSNAME || "ʀᴜᴅʜʀᴀ-ʙᴏᴛ",
   MODE: process.env.MODE || "private",
   ANTIDELETE: toBool(process.env.DELETED_LOG) || false,
