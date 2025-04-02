@@ -38,7 +38,7 @@ module.exports = {
   HEROKU: toBool(process.env.HEROKU) || true,
   BOT_NAME: process.env.BOT_NAME || "ʀᴜᴅʜʀᴀ-ʙᴏᴛ",
   PROCESSNAME: process.env.PROCESSNAME || "ʀᴜᴅʜʀᴀ-ʙᴏᴛ",
-  WORK_TYPE: process.env.MODE || "private",
+  MODE: process.env.MODE || "private",
   ANTIDELETE: toBool(process.env.DELETED_LOG) || false,
   REMOVEBG : process.env.REMOVEBG || false,
   DATABASE_URL: DATABASE_URL,
