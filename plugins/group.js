@@ -1,16 +1,3 @@
-/*
-██╗  ██╗ ██████╗ ████████╗ █████╗ ██████╗  ██████╗       ███╗   ███╗██████╗ 
-██║  ██║██╔═══██╗╚══██╔══╝██╔══██╗██╔══██╗██╔═══██╗      ████╗ ████║██╔══██╗
-███████║██║   ██║   ██║   ███████║██████╔╝██║   ██║█████╗██╔████╔██║██║  ██║
-██╔══██║██║   ██║   ██║   ██╔══██║██╔══██╗██║   ██║╚════╝██║╚██╔╝██║██║  ██║
-██║  ██║╚██████╔╝   ██║   ██║  ██║██║  ██║╚██████╔╝      ██║ ╚═╝ ██║██████╔╝
-╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝       ╚═╝     ╚═╝╚═════╝
- By : Taira Makino
- Github : https://github.com/anonphoenix007
- WhatsApp : https://wa.me/2347080968564
-*/                                                                                                                                                    
-
-
 const { command, isPrivate } = require("../lib/");
 const { isAdmin, formatp, parsedJid } = require("../lib");
 const config = require("../config");
@@ -46,15 +33,12 @@ command({
 	if (!message.isGroup) return message.reply("This is a group command");                                                                               
 	const groupMetadata = message.isGroup ? await message.client.groupMetadata(message.jid).catch((e) => {}) : "";
         const participants = message.isGroup ? await groupMetadata.participants : "";
-        let textt = `
-_*ʜᴏᴛᴀʀᴏ-ᴍᴅ Tagall\n*_
-*Message :* ${match? match : "blank"}\n\n
-`
+        let teks = ``
         for (let mem of participants) {
-            textt += `❤️🌊 @${mem.id.split("@")[0]}\n`;
+            teks += `@${mem.id.split("@")[0]}\n`;
         }
         await message.client.sendMessage(message.jid, {
-            text: textt,
+            text: teks,
             mentions: participants.map((a) => a.id),
         }, {
             quoted: message,
@@ -62,8 +46,7 @@ _*ʜᴏᴛᴀʀᴏ-ᴍᴅ Tagall\n*_
     }
 )
 
-command(
-  {
+command({
     pattern: "add",
     fromMe: true,
     desc: "add a person to group",
@@ -74,7 +57,7 @@ command(
     let users = match || message.reply_message.jid
     if (!match || message.reply_message) return await message.reply("_Mention or provide a number or reply to a user  to add");
     const isadmin = await isAdmin(message.jid, message.user, message.client);
-    if (!isadmin) return await message.reply("_Make me admin to use this command 😌📍_");
+    if (!isadmin) return await message.reply("_Make me admin to use this command_");
     const jid = parsedJid(users);
     await message.client.groupParticipantsUpdate(message.jid, [jid], "add");
     return await message.reply(`_@${jid[0].split("@")[0]} added_`, {
@@ -83,8 +66,7 @@ command(
   }
 );
 
-command(
-  {
+command({
     pattern: "kick",
     fromMe: true,
     desc: "kicks a person from group",
@@ -96,7 +78,7 @@ command(
   let user =  message.mention[0] || message.reply_message.jid
     if (!user) return await message.reply("_Reply or Mention user to kick_");
     const isadmin = await isAdmin(message.jid, message.user, message.client);
-    if (!isadmin) return await message.reply("_Make me admin to use this command 😌📍_");
+    if (!isadmin) return await message.reply("_Make me admin to use this command_");
     const jid = parsedJid(user);
     await message.client.groupParticipantsUpdate(message.jid, [jid], "remove");
     return await message.reply(`_@${jid[0].split("@")[0]} kicked_`, {
@@ -105,8 +87,7 @@ command(
   }
 );
 
-command(
-  {
+command({
     pattern: "promote",
     fromMe: isPrivate,
     desc: "promote to admin",
@@ -118,7 +99,7 @@ command(
     match = match || message.reply_message.jid;
     if (!match) return await message.reply("_Mention user to promote_");
     const isadmin = await isAdmin(message.jid, message.user, message.client);
-    if (!isadmin) return await message.reply("_Make me admin to use this command 😌📍_");
+    if (!isadmin) return await message.reply("_Make me admin to use this command_");
     const jid = parsedJid(match);
     await message.client.groupParticipantsUpdate(message.jid, jid, "promote");
     return await message.reply(`_@${jid[0].split("@")[0]} promoted as admin_`, {
@@ -126,8 +107,7 @@ command(
     });
   }
 );
-command(
-  {
+command({
     pattern: "demote",
     fromMe: isPrivate,
     desc: "demote from admin",
@@ -139,7 +119,7 @@ command(
     match = match || message.reply_message.jid;
     if (!match) return await message.reply("_Mention user to demote_");
     const isadmin = await isAdmin(message.jid, message.user, message.client);
-    if (!isadmin) return await message.reply("_Make me admin to use this command 😌📍_");
+    if (!isadmin) return await message.reply("_Make me admin to use this command_");
     const jid = parsedJid(match);
     await message.client.groupParticipantsUpdate(message.jid, jid, "demote");
     return await message.reply(
@@ -151,8 +131,7 @@ command(
   }
 );
 
-command(
-  {
+command({
     pattern: "mute",
     fromMe: isPrivate,
     desc: "nute group",
@@ -162,14 +141,13 @@ command(
     if (!message.isGroup)
       return await message.reply("_This command is for groups_");
     const isadmin = await isAdmin(message.jid, message.user, message.client);
-    if (!isadmin) return await message.reply("_Make me admin to use this command 😌📍_");
-    await message.reply(`_Group chat muted_\n\n> ʜᴏᴛᴀʀᴏ-ᴍᴅ `);
+    if (!isadmin) return await message.reply("_Make me admin to use this command_");
+    await message.reply(`_Group chat muted_`);
     return await message.client.groupSettingUpdate(message.jid, "announcement");
   }
 );
 
-command(
-  {
+command({
     pattern: "unmute",
     fromMe: isPrivate,
     desc: "unmute group",
@@ -179,14 +157,13 @@ command(
     if (!message.isGroup)
       return await message.reply("_This command is for groups_");
     const isadmin = await isAdmin(message.jid, message.user, message.client);
-    if (!isadmin) return await message.reply("_Make me admin to use this command 😌📍_");
-    await message.reply(`_Group chat unmuted_\n\n> ʜᴏᴛᴀʀᴏ-ᴍᴅ `);
+    if (!isadmin) return await message.reply("_Make me admin to use this command_");
+    await message.reply(`_Group chat unmuted_`);
     return await message.client.groupSettingUpdate(message.jid, "not_announcement");
   }
 );
 
-command(
-  {
+command({
     pattern: "gjid",
     fromMe: isPrivate,
     desc: "gets jid of all group members",
@@ -223,8 +200,7 @@ command({
     }
 }); 
 
-command(
-{
+command({
 	pattern: 'invite ?(.*)',
 	fromMe: isPrivate,
 	desc: "Provides the group's invitation link.",
@@ -232,13 +208,12 @@ command(
 }, async (message, match, m, client) => {
 	if (!message.isGroup) return await message.reply('_This command is only for group chats_')
   const isadmin = await isAdmin(message.jid, message.user, message.client);
-  if (!isadmin) return await message.reply("_Make me admin to use this command 😌📍_");
+  if (!isadmin) return await message.reply("_Make me admin to use this command_");
 	const response = await message.client.groupInviteCode(message.jid)
 	await message.reply(` Requested group link 🔗 \n\nhttps://chat.whatsapp.com/${response}`)
 })
 
-command(
-{
+command({
 	pattern: 'inviteuser ?(.*)',
 	fromMe: isPrivate,
 	desc: "Provides the group's invitation link.",
@@ -246,7 +221,7 @@ command(
 }, async (message, match, m, client) => {
 	if (!message.isGroup) return await message.reply('_This command is only for group chats_')
   const isadmin = await isAdmin(message.jid, message.user, message.client);
-  if (!isadmin) return await message.reply("_Make me admin to use this command 😌📍_");
+  if (!isadmin) return await message.reply("_Make me admin to use this command_");
 	if (!match) return message.reply("Provide A number to send group link to")
 	let tobe = match.replace(/[^0-9]/g, "")
 	const response = await message.client.groupInviteCode(message.jid)
@@ -254,8 +229,7 @@ command(
 })
 
 
-command(
-{
+command({
     pattern: 'left',
     fromMe: isPrivate,
     desc: "Leave GC",
@@ -267,8 +241,7 @@ command(
     return await message.client.groupLeave(message.jid);
 })
 
-  command(
-  {
+  command({
       pattern: 'del',
       fromMe: isPrivate,
       desc: "delete message",
@@ -284,8 +257,7 @@ command(
   }
 }}));
 
-command(
-{
+command({
   pattern: "requests",
   fromMe: isPrivate,
   desc: "List all group join requests",
@@ -294,14 +266,14 @@ command(
   try {
     if (!message.isGroup) return message.reply("This is a Group command.");
     const isadmin = await isAdmin(message.jid, message.user, message.client);
-    if (!isadmin) return await message.reply("_Make me admin to use this command 😌📍_");
+    if (!isadmin) return await message.reply("_Make me admin to use this command_");
     const requests = await message.client.groupRequestParticipantsList(message.jid);
     if (!requests || requests.length === 0) {
       return await message.reply("No Join Requests Yet.");
     }
     let requestList = "*List of User that requested to join*\n\n";
     for (const request of requests) {
-      requestList += `★ @${request.jid.split("@")[0]}\n`;
+      requestList += `• @${request.jid.split("@")[0]}\n`;
     }
     return await message.reply(requestList, { mentions: requests.map(r => r.jid) });
   } catch (error) {
@@ -309,8 +281,7 @@ command(
   }
 });
 
-command(
-{
+command({
   cmdname: "acceptall",
   fromMe: isPrivate,
   desc: "Accept all requests to join!",
@@ -319,14 +290,14 @@ command(
   try {
     if (!message.isGroup) return message.reply(`This command is for group chats only`)
     const isadmin = await isAdmin(message.jid, message.user, message.client);
-    if (!isadmin) return await message.reply("_Make me admin to use this command 😌📍_");
+    if (!isadmin) return await message.reply("_Make me admin to use this command_");
     const requests = await message.client.groupRequestParticipantsList(message.jid);
     if (!requests || requests.length === 0) { return await message.reply("No One Send Join Requests Yet.")}
     let acceptedList = "*List of accepted users*\n\n";
     for (const request of requests) {
       try {
         await message.client.groupRequestParticipantsUpdate(message.jid, [request.jid], "approve");
-        acceptedList += `★ @${request.jid.split("@")[0]}\n`;
+        acceptedList += `• @${request.jid.split("@")[0]}\n`;
       } catch (error) {
         await message.reply(error)
       }
@@ -337,8 +308,7 @@ command(
   }
 });
 
-command(
-{
+command({
   cmdname: "rejectall",
   fromMe: isPrivate,
   desc: "Reject all users requests to join!",
@@ -347,7 +317,7 @@ command(
 try {
     if (!message.isGroup) return message.reply(`This command is for group chats only`)
   const isadmin = await isAdmin(message.jid, message.user, message.client);
-  if (!isadmin) return await message.reply("_Make me admin to use this command 😌📍_");
+  if (!isadmin) return await message.reply("_Make me admin to use this command_");
     const requests = await message.client.groupRequestParticipantsList(message.jid);
     if (!requests || requests.length === 0) { return await message.reply("*No One Send Join Requests Yet.*")}
     let rejectedList = "*List of rejected users*\n\n";
@@ -366,8 +336,7 @@ try {
     await console.error(`${error}\n\ncommand: rejectall`, error);
   }
 });
-command(
-{
+command({
 	on: "alink",
 	fromMe: false,
 	desc: "alink listener"
@@ -402,6 +371,6 @@ const formatTime = (seconds) => {
 command({ 
     on: "about"
    }, async (message, match, m, client) => {
-   let text = `☬ ʜᴏᴛᴀʀᴏ-ᴍᴅ ☬, By:Tᴀɪʀᴀ Mᴀᴋɪɴᴏ, Alive:${uptimeFormatted}, RAM: ${formatp(os.totalmem() - os.freemem())} / ${formatp(os.totalmem())}`
+   let text = `Rudhra, Alive:${uptimeFormatted}, RAM: ${formatp(os.totalmem() - os.freemem())} / ${formatp(os.totalmem())}`
    await message.client.updateProfileStatus(text, randomTime)
 });
