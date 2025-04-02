@@ -1,27 +1,26 @@
 {
-    "name": "hotaro-md",
-    "description": "Creative WhatsApp bot based on X-Asena written in Baileys Javascript to make experience on WhatsApp more fun.",
-    "repository" : "https://github.com/anonphoenix007/Hotaro-Md",
-    "logo": "https://telegra.ph/file/0691935a017b74bc2e49b.jpg",
-    "keywords": ["Hotaro-md", "Hotaro", "Anime bot", "Whatsapp"],
-    "success_url": "/",
-    "stack": "container",
+  "name": "rudhra-bot",
+  "description": "Multi Device whatsapp bot",
+  "logo": "https://i.imgur.com/We9h8KU.jpeg",
+  "keywords": ["whatsapp"],
+  "repository": "https://github.com/princerudh/rudhra_3",
+  "stack": "container",
   
     "env": {
       "OWNER_NAME": {
         "description": "Name for Bot Owner",
-        "value": "Tᴀɪʀᴀ Mᴀᴋɪɴᴏ",
+        "value": "ʀᴜᴅʜʀᴀ",
         "required": true
       },
   
       "WELCOME_MSG": {
         "description": "Welcome message here",
-        "value": "Hi @user Welcome to @gname\n\n☬ ʜᴏᴛᴀʀᴏ-ᴍᴅ ☬",
+        "value": "Hi @user Welcome to @gname",
         "required": false
       },
       "GOODBYE_MSG": {
         "description": "goodbye message here",
-        "value": "Hi @user It was Nice Seeing you\n\n☬ ʜᴏᴛᴀʀᴏ-ᴍᴅ ☬",
+        "value": "Hi @user It was Nice Seeing you",
         "required": false
       },
       "STATUS_SAVER": {
@@ -30,12 +29,12 @@
       },
       "SUDO": {
         "description": "bot Admin number here",
-        "value": "23470809685xx"
+        "value": "919895809960"
       },
       "BOT_NAME": {
         "description": "Bot name here.",
         "required": false,
-        "value": "☬ ʜᴏᴛᴀʀᴏ-ᴍᴅ ☬"
+        "value": "ʀᴜᴅʜʀᴀ ʙᴏᴛ"
       },
       "ANTILINK": {
         "description": "Antilink true or false",
@@ -99,13 +98,13 @@
         "description": "put your SESSION_ID here.",
         "value": ""
       },
-      "WORK_TYPE": {
-        "description": "Worktype of your bot. Use public or private, if it is private then only bot number can use it. If public then everyone can use it.",
+      "MODE": {
+        "description": "mode of your bot. Use public or private, if it is private then only bot number can use it. If public then everyone can use it.",
         "value": "private"
       },
       "PACKNAME": {
         "description": "Put Sticker Pack_Name.",
-        "value": "☬ ʜᴏᴛᴀʀᴏ-ᴍᴅ ☬",
+        "value": "ʀᴜᴅʜʀᴀ ʙᴏᴛ",
         "required": false
       }
     },
