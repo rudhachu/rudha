@@ -1,16 +1,3 @@
-/*
-██╗  ██╗ ██████╗ ████████╗ █████╗ ██████╗  ██████╗       ███╗   ███╗██████╗ 
-██║  ██║██╔═══██╗╚══██╔══╝██╔══██╗██╔══██╗██╔═══██╗      ████╗ ████║██╔══██╗
-███████║██║   ██║   ██║   ███████║██████╔╝██║   ██║█████╗██╔████╔██║██║  ██║
-██╔══██║██║   ██║   ██║   ██╔══██║██╔══██╗██║   ██║╚════╝██║╚██╔╝██║██║  ██║
-██║  ██║╚██████╔╝   ██║   ██║  ██║██║  ██║╚██████╔╝      ██║ ╚═╝ ██║██████╔╝
-╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝       ╚═╝     ╚═╝╚═════╝
- By : Taira Makino
- Github : https://github.com/anonphoenix007
- WhatsApp : https://wa.me/2347080968564
-*/                                                                                                                                                    
-
-
 const {
   command,
   isPrivate,
@@ -21,8 +8,7 @@ const {
 } = require("../lib");
 const { yta, ytv, ytsdl } = require("../lib/ytdl");
 
-command(
-  {
+command({
     pattern: "yta",
     fromMe: isPrivate,
     desc: "Download audio from youtube",
@@ -33,7 +19,7 @@ command(
     if (!match) return await message.reply("Give me a youtube link");
     if (!isUrl(match)) return await message.reply("Give me a youtube link");
     let { dlink, title } = await yta(match);
-    await message.reply(`_Downloading ${title}_\n\n☬ ʜᴏᴛᴀʀᴏ-ᴍᴅ ☬`);
+    await message.reply(`_Downloading ${title}_`);
     let buff = await getBuffer(dlink);
     return await message.sendMessage(
       message.jid,
@@ -59,7 +45,7 @@ command(
     if (!match) return await message.reply("Give me a youtube link");
     if (!isUrl(match)) return await message.reply("Give me a youtube link");
     let { dlink, title } = await ytv(match, "360p");
-    await message.reply(`_Downloading ${title}_\n\n☬ ʜᴏᴛᴀʀᴏ-ᴍᴅ ☬`);
+    await message.reply(`_Downloading ${title}_`);
     return await message.sendMessage(
       message.jid,
       dlink,
@@ -83,7 +69,7 @@ command(
     match = match || message.reply_message.text;
     if (!match) return await message.reply("Give me a query");
     let { dlink, title } = await ytsdl(match);
-    await message.reply(`_Downloading ${title}_\n\n☬ ʜᴏᴛᴀʀᴏ-ᴍᴅ ☬`);
+    await message.reply(`_Downloading ${title}_`);
     let buff = await getBuffer(dlink);
     return await message.sendMessage(
       message.jid,
@@ -108,7 +94,7 @@ command(
     match = match || message.reply_message.text;
     if (!match) return await message.reply("Give me a query");
     let { dlink, title } = await ytsdl(match, "video");
-    await message.reply(`_Downloading ${title}_\n\n☬ ʜᴏᴛᴀʀᴏ-ᴍᴅ ☬`);
+    await message.reply(`_Downloading ${title}_`);
     return await message.sendMessage(
       message.jid,
       dlink,
