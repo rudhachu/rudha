@@ -87,12 +87,12 @@
         "value": "recording"
       },
       "HANDLER": {
-        "description": "Enter your desired prefix for ʜᴏᴛᴀʀᴏ-ᴍᴅ",
+        "description": "Enter your desired prefix.",
         "value": "/"
       },
       "OWNER_NUMBER": {
         "description": "The phone numbers of the users who you want to be admin for the bot (should be in international format without + and multiple numbers must be separated by a comma \",\")",
-        "value": "2347080968564"
+        "value": "919895809960"
       },
       "SESSION_ID": {
         "description": "put your SESSION_ID here.",
