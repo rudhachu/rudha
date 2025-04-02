@@ -1,17 +1,15 @@
-const { fromBuffer, mimeTypes } = require("file-type");
 const { command, isPrivate } = require("../lib/");
-const speed = require('performance-now');
-let timestamp = speed()
-let latency = speed() - timestamp
 
 command({
     pattern: "ping",
     fromMe: isPrivate,
-    desc: "To check ping",
+    desc: "check bot speed",
     type: "user",
   },
-    async (message, match) => {
-    await message.reply("*Hello 👋*");
-    await message.reply(`*Response: ${latency} secs*`);
-  }
-);
+    async (message, match, m) => {
+    const start = new Date().getTime();
+    const msg = await message.reply('Checking!');
+    const end = new Date().getTime();
+    const responseTime = (end - start) / 1000;
+    return await msg.edit(`*Response: ${responseTime} secs*`);
+});
