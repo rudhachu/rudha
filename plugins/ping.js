@@ -11,6 +11,7 @@ command({
     type: "user",
   },
     async (message, match) => {
+    await message.reply("*Hello 👋*");
     await message.reply(`*Response: ${latency} secs*`);
   }
 );
