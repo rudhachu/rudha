@@ -40,13 +40,13 @@ command({
   fromMe: isPrivate,
   desc: "Change audio title, album/sticker author, packname",
   type: "converter",
-}, async (message, match) => {
+}, async (message, match, m) => {
   if (!message.reply_message || !(message.reply_message.video || message.reply_message.audio || message.reply_message.sticker)) {
     return await message.reply("*_Reply to sticker/audio/voice/video!_*");
   }
 
   if (message.reply_message.audio || message.reply_message.video) {
-   let media = await toAudio(await message.quoted.download("buffer"));
+   let media = await toAudio(await m.quoted.download("buffer"));
     
     let matchParts = match ? match.match(/[^,;]+/g) : [];
     let configParts = config.AUDIO_DATA.match(/[^,;]+/g);
@@ -70,7 +70,7 @@ command({
       quoted: message.data
     });
   } else if (message.reply_message.sticker) {
-    let q = await message.reply_message.download("buffer");
+    let q = await m.quoted.download("buffer");
     let exif;
     if (match !== "") {
       const splitMatch = match.split(/[,;]/);
@@ -114,9 +114,9 @@ command({
     fromMe: isPrivate,
     desc: "converts video/voice to mp3",
     type: "media",
-}, async (message, match) => {
+}, async (message, match, m) => {
   try {
-   let media = await toAudio(await message.quoted.download("buffer"));
+   let media = await toAudio(await m.quoted.download("buffer"));
     
     let matchParts = match ? match.match(/[^,;]+/g) : [];
     let configParts = config.AUDIO_DATA.match(/[^,;]+/g);
