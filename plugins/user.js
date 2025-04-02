@@ -39,8 +39,7 @@ async function generateProfilePicture(buffer) {
   };
 }
 
-command(
-  {
+command({
     pattern: "fullpp",
     fromMe: true,
     desc: "Set full profile picture",
@@ -56,8 +55,7 @@ command(
 );
 
 
-command(
- { 
+command({ 
   on: "text" 
  }, async (message, match, m, client) => {
   try {
@@ -70,8 +68,7 @@ command(
 
 
 
-command(
-  {
+command({
     pattern: "shutdown",
     fromMe: true,
     desc: "stops the bot",
@@ -79,7 +76,7 @@ command(
   },
   async (message, match) => {
     await message.sendMessage(message.jid, "shutting down...");
-    exec("pm2 stop HOTARO-MD", (error, stdout, stderr) => {
+    exec("pm2 stop rudhra", (error, stdout, stderr) => {
       if (error) {
         return message.sendMessage(message.jid, `Error: ${error}`);
       }
@@ -89,8 +86,7 @@ command(
 );
 
 
-command(
-  {
+command({
     pattern: "setpp",
     fromMe: true,
     desc: "Set profile picture",
@@ -104,8 +100,7 @@ command(
   }
 );
 
-command(
-  {
+command({
     pattern: "rpp",
     fromMe: true,
     desc: "remove profile picture",
@@ -118,8 +113,7 @@ command(
 );
 
 
-command(
-  {
+command({
     pattern: "setname",
     fromMe: true,
     desc: "Set User name",
@@ -132,8 +126,7 @@ command(
   }
 );
 
-command(
-  {
+command({
     pattern: "block",
     fromMe: true,
     desc: "Block a person",
@@ -154,8 +147,7 @@ command(
   }
 );
 
-command(
-  {
+command({
     pattern: "unblock",
     fromMe: true,
     desc: "Unblock a person",
@@ -180,8 +172,7 @@ command(
   }
 );
 
-command(
-  {
+command({
     pattern: "jid",
     fromMe: isPrivate,
     desc: "Give jid of chat/user",
@@ -195,8 +186,7 @@ command(
   }
 );
 
-command(
-  {
+command({
     pattern: "del",
     fromMe: true,
     desc: "deletes a message",
@@ -209,8 +199,7 @@ command(
   }
 );
 
-command(
-  {
+command({
     pattern: "warn",
     fromMe: true,
     desc: "Warn a user",
@@ -247,8 +236,7 @@ command(
   }
 );
 
-command(
-  {
+command({
     pattern: "resetwarn",
     fromMe: true,
     desc: "Reset warnings for a user",
@@ -258,7 +246,7 @@ command(
     if (!userId) return message.reply("_Mention or reply to someone_");
     await resetWarn(userId);
     return await message.reply(
-      `_Warnings for @${userId.split("@")[0]} reset_\n\n☬ ʜᴏᴛᴀʀᴏ-ᴍᴅ ☬`,
+      `_Warnings for @${userId.split("@")[0]} reset_`,
       {
         mentions: [userId],
       }
@@ -266,22 +254,20 @@ command(
   }
 );
 
-command(
-  {
+command({
     pattern: "uptime",
     fromMe: isPrivate,
     desc: "Check uptime of bot",
     type: "user",
   },
   async (message, match) => {
-    message.reply(`*Uptime:* ${secondsToDHMS(process.uptime())}\n\n☬ ʜᴏᴛᴀʀᴏ-ᴍᴅ ☬`);
+    message.reply(`*Uptime:* ${secondsToDHMS(process.uptime())}`);
   }
 );
 
 
 
-command(
-  {
+command({
     pattern: "ss ?(.*)",
     fromMe: true,
     desc: "Screenshots a site",
@@ -299,7 +285,7 @@ command(
       {
         image: { url: screenshotUrl },
         mimetype: "image/jpeg",
-        caption: `\n> screenshot of ${(match)} generated successfully `,
+        caption: `Screenshot of ${(match)} generated successfully `,
       },
       { quoted: message }
     );
