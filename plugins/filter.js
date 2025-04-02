@@ -1,17 +1,4 @@
-/*
-██╗  ██╗ ██████╗ ████████╗ █████╗ ██████╗  ██████╗       ███╗   ███╗██████╗ 
-██║  ██║██╔═══██╗╚══██╔══╝██╔══██╗██╔══██╗██╔═══██╗      ████╗ ████║██╔══██╗
-███████║██║   ██║   ██║   ███████║██████╔╝██║   ██║█████╗██╔████╔██║██║  ██║
-██╔══██║██║   ██║   ██║   ██╔══██║██╔══██╗██║   ██║╚════╝██║╚██╔╝██║██║  ██║
-██║  ██║╚██████╔╝   ██║   ██║  ██║██║  ██║╚██████╔╝      ██║ ╚═╝ ██║██████╔╝
-╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝       ╚═╝     ╚═╝╚═════╝
- By : Taira Makino
- Github : https://github.com/anonphoenix007
- WhatsApp : https://wa.me/2347080968564
-*/                                                                                                                                                    
-
-
-const { getFilter, setFilter, deleteFilter } = require("../database/filters");
+const { getFilter, setFilter, deleteFilter } = require("../lib/database/filters");
 const { command} = require("../lib");
 
 command(
