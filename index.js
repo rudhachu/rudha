@@ -1,20 +1,8 @@
-/*
-██╗  ██╗ ██████╗ ████████╗ █████╗ ██████╗  ██████╗       ███╗   ███╗██████╗ 
-██║  ██║██╔═══██╗╚══██╔══╝██╔══██╗██╔══██╗██╔═══██╗      ████╗ ████║██╔══██╗
-███████║██║   ██║   ██║   ███████║██████╔╝██║   ██║█████╗██╔████╔██║██║  ██║
-██╔══██║██║   ██║   ██║   ██╔══██║██╔══██╗██║   ██║╚════╝██║╚██╔╝██║██║  ██║
-██║  ██║╚██████╔╝   ██║   ██║  ██║██║  ██║╚██████╔╝      ██║ ╚═╝ ██║██████╔╝
-╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝       ╚═╝     ╚═╝╚═════╝
- By : Taira Makino
- Github : https://github.com/anonphoenix007
- WhatsApp : https://wa.me/2347080968564
-*/                                                                                                                                                    
-
 const fs = require("fs").promises;
 const path = require("path");
 const config = require("./config");
 const connect = require("./lib/connection");
-const { getandRequirePlugins } = require("./database/plugins");
+const { getandRequirePlugins } = require("./lib/database/plugins");
 
 global.__basedir = __dirname;
 
@@ -34,17 +22,17 @@ const readAndRequireFiles = async (directory) => {
 
 async function initialize() {
  
-  console.log("HOTARO-MD");
+  console.log("WhatsApp Bot Initializing...");
   try {
-    await readAndRequireFiles(path.join(__dirname, "/database/"));
+    await readAndRequireFiles(path.join(__dirname, "/lib/database/"));
     console.log("Syncing Database");
 
     await config.DATABASE.sync();
 
-    console.log("📥  Installing HOTARO-MD Plugins...");
+    console.log("Installing Plugins...");
     await readAndRequireFiles(path.join(__dirname, "/plugins/"));
     await getandRequirePlugins();
-    console.log("✅ Plugins Successfully Installed!");
+    console.log("Plugins Successfully Installed!");
 
     return  await connect();
   } catch (error) {
