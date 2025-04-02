@@ -1,19 +1,6 @@
-/*
-██╗  ██╗ ██████╗ ████████╗ █████╗ ██████╗  ██████╗       ███╗   ███╗██████╗ 
-██║  ██║██╔═══██╗╚══██╔══╝██╔══██╗██╔══██╗██╔═══██╗      ████╗ ████║██╔══██╗
-███████║██║   ██║   ██║   ███████║██████╔╝██║   ██║█████╗██╔████╔██║██║  ██║
-██╔══██║██║   ██║   ██║   ██╔══██║██╔══██╗██║   ██║╚════╝██║╚██╔╝██║██║  ██║
-██║  ██║╚██████╔╝   ██║   ██║  ██║██║  ██║╚██████╔╝      ██║ ╚═╝ ██║██████╔╝
-╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝       ╚═╝     ╚═╝╚═════╝
- By : Taira Makino
- Github : https://github.com/anonphoenix007
- WhatsApp : https://wa.me/2347080968564
-*/                                                                                                                                                    
-
-
 const { ANTIDELETE } = require("../config");
 const { command, isPrivate, serialize } = require("../lib");
-const { loadMessage, getName } = require("../database/StoreDb");
+const { loadMessage, getName } = require("../lib/database/StoreDb");
 command(
   {
     on: "svdelete",
