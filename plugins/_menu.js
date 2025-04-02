@@ -35,20 +35,18 @@ function runtime(seconds) {
 }
 
 
-command(
-    {
+command({
         pattern: "alive",
         fromMe: isPrivate,
         desc: "alive",
         type: "user"
     }, async (message) => {
-        await message.reply(`ʜᴏᴛᴀʀᴏ-ᴍᴅ  is active.\nUptime: *_${runtime(process.uptime())}_*`)
+        await message.reply(`*Rudhra  is active.*\nUptime: *${runtime(process.uptime())}*`)
     }
 );
 
 
-command(
-  {
+command({
     pattern: "list",
     fromMe: isPrivate,
     desc: "Show All Commands",
@@ -74,8 +72,7 @@ Description: ${i.desc}\`\`\``);
         .toLocaleString("en-IN", { timeZone: "Africa/Lagos" })
         .split(",");
       let menu = `
-     ☬ ʜᴏᴛᴀʀᴏ-ᴍᴅ ☬
-   *BY : Tᴀɪʀᴀ Mᴀᴋɪɴᴏ* ${readmore}
+     *MENU 🌫️* ${readmore}
       `;
       let cmnd = [];
       let cmd;
@@ -110,8 +107,7 @@ Description: ${i.desc}\`\`\``);
   }
 );
 
-command(
-{
+command({
       pattern: "find ?(.*)",
       fromMe: isPrivate,
       desc: "Finds music name using AI",
@@ -129,7 +125,7 @@ function getDuration(millis) {
 }
 const Message = {
     text:  `
-    *☬ ʜᴏᴛᴀʀᴏ-ᴍᴅ ☬ Song Finder*
+    *SONG FINDER*
 *Title:* ${data.title}\n
 Artists: ${data.artists?.map(e => e.name + " ")}\n
 Released on: ${data.release_date}\n
@@ -143,8 +139,7 @@ YouTube: ${"youtube" in data.external_metadata?"https://youtu.be/"+data.external
 await message.sendMessage(message.jid, Message)
     });
 
-command(
-{
+command({
     pattern: 'edit ?(.*)',
     fromMe: true,
     desc: 'edit messages',
@@ -155,6 +150,3 @@ command(
     await message.edit(match[1],message.jid,message.quoted.key);
 }
 }));
-
-
-
