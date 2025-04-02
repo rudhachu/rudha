@@ -19,8 +19,7 @@ function runtime(seconds) {
 }
 
 
-command(
-  {
+command({
     pattern: "menu",
     fromMe: isPrivate,
     desc: "Menu",
@@ -33,33 +32,33 @@ command(
         .split(",");
       let heder = `
 ╭════════════════ ⪩
-┃  〘 *☬ ʜᴏᴛᴀʀᴏ-ᴍᴅ ☬* 〙
+┃  〘 *ʀᴜᴅʜʀᴀ ʙᴏᴛ* 〙
 ╰════════════════ ⪨
 ╭════════════════ ⪩
 ┃   *Oᴡɴᴇʀ : ${OWNER_NAME}*
 ┃   *Time  : ${time}*
 ┃   *Dᴀᴛᴇ : ${date}*
 ┃   *Pʟᴜɢɪɴꜱ : ${plugins.commands.length}*
-┃   *MODE : ${config.WORK_TYPE}*
+┃   *MODE : ${config.MODE}*
 ┃   *Pʀᴇꜰɪx : ${prefix}*
 ┃   *Rᴜɴᴛɪᴍᴇ : ${runtime(process.uptime())}*
 ╰════════════════ ⪨
 `;
-    let buff = await getBuffer("https://telegra.ph/file/0691935a017b74bc2e49b.jpg");
+    let buff = await getBuffer("https://raw.githubusercontent.com/rudhra-prh/media/main/image/rudhra3.jpeg");
     await message.client.sendMessage(message.jid, {
       'image': buff,
       'mimetype': "image/jpeg",
       'caption': heder,
       'contextInfo': {
         'externalAdReply': {
-          'title': "ʜᴏᴛᴀʀᴏ-ᴍᴅ",
+          'title': "ʀᴜᴅʜʀᴀ ʙᴏᴛ",
           'body': "Lightweight WhatsApp Bot.",
           'sourceUrl': "",
           'mediaUrl': "",
           'mediaType': 1,
           'showAdAttribution': true,
           'renderLargerThumbnail': false,
-          'thumbnailUrl': "https://telegra.ph/file/0691935a017b74bc2e49b.jpg"
+          'thumbnailUrl': "https://raw.githubusercontent.com/rudhra-prh/media/main/image/rudhra3.jpeg"
         }
       }
     });
