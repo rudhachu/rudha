@@ -1,5 +1,5 @@
 const { isJidGroup } = require("@whiskeysockets/baileys");
-const config = require("../config");
+const config = require("../../config");
 const { DataTypes } = require("sequelize");
 
 const chatDb = config.DATABASE.define("Chat", {
