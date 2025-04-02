@@ -1,16 +1,3 @@
-/*
-██╗  ██╗ ██████╗ ████████╗ █████╗ ██████╗  ██████╗       ███╗   ███╗██████╗ 
-██║  ██║██╔═══██╗╚══██╔══╝██╔══██╗██╔══██╗██╔═══██╗      ████╗ ████║██╔══██╗
-███████║██║   ██║   ██║   ███████║██████╔╝██║   ██║█████╗██╔████╔██║██║  ██║
-██╔══██║██║   ██║   ██║   ██╔══██║██╔══██╗██║   ██║╚════╝██║╚██╔╝██║██║  ██║
-██║  ██║╚██████╔╝   ██║   ██║  ██║██║  ██║╚██████╔╝      ██║ ╚═╝ ██║██████╔╝
-╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝       ╚═╝     ╚═╝╚═════╝
- By : Taira Makino
- Github : https://github.com/anonphoenix007
- WhatsApp : https://wa.me/2347080968564
-*/                                                                                                                                                    
-
-
 const got = require("got");
 const Heroku = require("heroku-client");
 const { command, isPrivate } = require("../lib/");
@@ -19,8 +6,8 @@ const heroku = new Heroku({ token: Config.HEROKU_API_KEY });
 const baseURI = "/apps/" + Config.HEROKU_APP_NAME;
 const { secondsToDHMS } = require("../lib/functions");
 const { delay } = require("@whiskeysockets/baileys");
-const isVPS = !(__dirname.startsWith("/HOTARO-MD") || __dirname.startsWith("/HOTARO-MD"));
-const isHeroku = __dirname.startsWith("/HOTARO-MD");
+const isVPS = !(__dirname.startsWith("/rudhra-bot") || __dirname.startsWith("/rudhra-bot"));
+const isHeroku = __dirname.startsWith("/rudhra-bot");
 const { update } = require("../lib/koyeb");
 const config = require("../config");
 
@@ -92,15 +79,14 @@ fs.writeFileSync('../config.env', lines.join('\n'));
         if (message) return await message.reply("_Unable to set var._\n"+e.message);
         }
         } 
-        if (__dirname.startsWith("/HOTARO-MD")) {
+        if (__dirname.startsWith("/rudhra-bot")) {
             let set_res = await update(key,value)
             if (set_res && message) return await message.reply(set_)
             else throw "Error!"
         }   
          }
 
-command(
- {
+command({
   pattern: "mode",
   fromMe: "true",
   desc: "change mode",
@@ -108,24 +94,23 @@ command(
  }, async(message, match) => {
   if(!match) { return message.reply("use like .mode private/public")};
   if(match === "private") 
-  process.env.WORK_TYPE="private"
-  await message.reply("*HOTARO-MD WORKTYPE is now private*")
+  process.env.MODE="private"
+  await message.reply("*RUDHRA WORKTYPE is now private*")
   if (match === "public"){
-  process.env.WORK_TYPE="public"
-  await message.reply("*HOTARO-MD WORKTYPE is now public*")
+  process.env.MODE="public"
+  await message.reply("*RUDHRA WORKTYPE is now public*")
   }
   else {
   await message.reply("*You need to choose between private or public*")}
  });
-command(
-  {
+command({
     pattern: "restart",
     fromMe: true,
     type: "heroku",
     desc: "Restart Dyno",
   },
   async (message) => {
-    await message.reply(`_☬ ʜᴏᴛᴀʀᴏ-ᴍᴅ ☬ is Restarting_`);
+    await message.reply(`_Restarting_`);
     if (Config.HEROKU) {
       if (Config.HEROKU_APP_NAME === "") {
         return await message.reply("Add `HEROKU_APP_NAME` env variable");
@@ -149,15 +134,14 @@ command(
     }
   }
 );
-command(
-  {
+command({
     pattern: "restart",
     fromMe: true,
     type: "heroku",
     desc: "Dyno off",
   },
   async (message) => {
-          await message.reply(`_☬ ʜᴏᴛᴀʀᴏ-ᴍᴅ ☬ is shutting down/restarting._`);
+          await message.reply(`_shutting down/restarting._`);
           process.exit()
   }
 );
@@ -170,7 +154,7 @@ command({
     }, async (message, match) => {
         match = match || message.reply_message.text
         var m = message;
-        if (!match) return await message.reply("_Need a var!_\n_Usage: .setvar WORK_TYPE:public_")
+        if (!match) return await message.reply("_Need a var!_\n_Usage: .setvar MODE:public_")
         let [key, ...valueArr] = match.split(':');
         let value = valueArr.join(':');
         config[key] = value
@@ -178,14 +162,13 @@ command({
         
     });
 
-command(
- {
+command({
         pattern: 'delvar ?(.*)',
         fromMe: true,
         desc: "Delete a variable",
         type: 'heroku'
     }, async (message, match) => {
-        if (!isHeroku) return await message.reply("_Make sure Hotaro-md is running on heroku!_");
+        if (!isHeroku) return await message.reply("_Make sure rudhra is running on heroku!_");
         await fixHerokuAppName(message)
         if (match[1] === '') return await message.reply("Variable not found")
         await heroku.get(baseURI + '/config-vars').then(async (vars) => {
@@ -206,8 +189,7 @@ command(
         });
 
     });
- command(
-  {
+ command({
         pattern: 'getvar ?(.*)',
         fromMe: true,
         desc: "Get a Variable",
@@ -216,8 +198,7 @@ command(
         if (match === '') return await message.reply("Variable not found")
         return await message.reply(process.env[match.trim()]?.toString() || "Not found")
    });
- command(
-  {
+ command({
             pattern: "allvar",
             fromMe: true,
             desc: "get all variables",
@@ -226,9 +207,9 @@ command(
             if (isVPS) {
                 return await message.reply(fs.readFileSync(`../config.env`).toString('utf-8'));
             }
-            if (!isHeroku) return await message.reply("_Make sure Hotaro-md is deployed on heroku!_");
+            if (!isHeroku) return await message.reply("_Make sure rudhra is deployed on heroku!_");
             await fixHerokuAppName(message)
-            let msg = "☬ ʜᴏᴛᴀʀᴏ-ᴍᴅ ☬" + "\n\n\n```"
+            let msg = "ʀᴜᴅʜʀᴀ ʙᴏᴛ" + "\n\n\n```"
             await heroku
                 .get(baseURI + "/config-vars")
                 .then(async (keys) => {
@@ -244,8 +225,7 @@ command(
         }
     );
 
-command(
- {
+command({
         pattern: 'setsudo ?(.*)',
         fromMe: true,
         desc: "make quoted user sudo",
@@ -270,8 +250,7 @@ command(
     await setVar("SUDO",setSudo,m)
     } else{ return await message.reply("_User is already a sudo_")}
 });
-command(
- {
+command({
         pattern: 'getsudo ?(.*)',
         fromMe: true,
         desc: "get bot sudo",
@@ -279,8 +258,7 @@ command(
     }, async (message, match) => {
     return await message.reply(config.SUDO);
     });
-command(
- {
+command({
          pattern: 'delsudo ?(.*)',
          fromMe: true, 
          desc: "Deletes sudo",
