@@ -26,7 +26,8 @@ module.exports = {
   BRANCH: "main",
   WARN_COUNT: 3,
   PACKNAME: process.env.PACKNAME || "ʀᴜᴅʜʀᴀ-ʙᴏᴛ",
-  PRESENCE: process.env.PRESENCE || "recording",
+  PRESENCE: process.env.PRESENCE || "unavailable", // composing | recording | available | unavailable
+  BOT_INFO: process.env.BOT_INFO || "ʀᴜᴅʜʀᴀ ʙᴏᴛ;Ƥ ʀ ɪ ɴ ᴄ ᴇ  Ʀ ᴜ ᴅ ʜ;https://raw.githubusercontent.com/rudhraan/media/main/image/rudhra2.jpg",
   WELCOME_MSG: process.env.WELCOME_MSG || `Hi @user Welcome to @gname\n\nʀᴜᴅʜʀᴀ-ʙᴏᴛ`,
   GOODBYE_MSG: process.env.GOODBYE_MSG || `Hi @user It was Nice Seeing you\n\nʀᴜᴅʜʀᴀ-ʙᴏᴛ`,
   AUTHOR: process.env.AUTHOR || "ʀᴜᴅʜʀᴀ-ʙᴏᴛ",
@@ -37,6 +38,8 @@ module.exports = {
   OWNER_NAME: process.env.OWNER_NAME || "ʀᴜᴅʜʀᴀ-ʙᴏᴛ",
   HEROKU: toBool(process.env.HEROKU) || true,
   BOT_NAME: process.env.BOT_NAME || "ʀᴜᴅʜʀᴀ-ʙᴏᴛ",
+  STICKER_DATA: process.env.STICKER_DATA || "Ʀ ᴜ ᴅ ʜ ʀ λ;Ƥ ʀ ɪ ɴ ᴄ ᴇ  Ʀ ᴜ ᴅ ʜ",
+  AUDIO_DATA: process.env.AUDIO_DATA || "Ʀ ᴜ ᴅ ʜ ʀ λ;Ƥ ʀ ɪ ɴ ᴄ ᴇ  Ʀ ᴜ ᴅ ʜ;https://raw.githubusercontent.com/rudhra-prh/media/main/image/rudhra2.jpg",
   PROCESSNAME: process.env.PROCESSNAME || "ʀᴜᴅʜʀᴀ-ʙᴏᴛ",
   MODE: process.env.MODE || "private",
   ANTIDELETE: toBool(process.env.DELETED_LOG) || false,
