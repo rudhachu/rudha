@@ -11,6 +11,6 @@ pl/*
 */                                                                                                                                                    
 
 
-const {command} = require("./lib")
+//const {command} = require("./lib")
 
-module.exports = {Module:command}
+//module.exports = {Module:command}
