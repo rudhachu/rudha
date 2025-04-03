@@ -5,8 +5,7 @@ command({
     fromMe: isPrivate,
     desc: "check bot speed",
     type: "user",
-  },
-    async (message) => {
+  },async (message) => {
 	const start = new Date().getTime();
 	const msg = await message.reply('*Checking*');
 	const end = new Date().getTime();
