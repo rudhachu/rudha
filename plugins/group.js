@@ -351,6 +351,7 @@ if (/\bhttps?:\/\/\S+/gi.test(message.message)){
         var usr = message.sender.includes(":") ? message.sender.split(":")[0]+"@s.whatsapp.net" : message.sender
         if (config.ANTI_LINK_ACTION === "delete") { await message.sendMessage(message.jid, { delete: message.data.key })
         await message.reply("_Link is not allowed!_")};
+	await message.client.groupParticipantsUpdate(message.jid, [usr], "remove");
         if (config.ANTI_LINK_ACTION === "kick" ) { await message.client.groupParticipantsUpdate(message.jid, [usr], "remove");
 	await message.reply("_Link is not allowed here_")}
 } else return
